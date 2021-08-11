@@ -1,7 +1,6 @@
 package com.codestates.seb.StatesAirlineServer.Controller;
 
 import com.codestates.seb.StatesAirlineServer.Domain.FlightDTO;
-import com.codestates.seb.StatesAirlineServer.Service.FlightService;
 import com.codestates.seb.StatesAirlineServer.Service.FlightServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
     private final BookRepositoryImpl bookRepositoryImpl;
 
@@ -16,30 +16,33 @@ public class BookServiceImpl implements BookService{
         this.bookRepositoryImpl = bookRepositoryImpl;
     }
 
-    private List<BookDTO> bootList = BookData.getInstance().getBookList();
-
     @Override
     public List<BookDTO> SearchAll() {
-        return null;
+
+        return bookRepositoryImpl.FindAll();
     }
 
     @Override
     public List<BookDTO> SearchByFlightUuid(String uuid) {
-        return null;
+
+        return bookRepositoryImpl.FindByUuid(uuid);
     }
 
     @Override
     public List<BookDTO> SearchByPhone(String phone) {
-        return null;
+
+        return bookRepositoryImpl.FindByPhone(phone);
     }
 
     @Override
     public BookDTO SaveBook(BookDTO data) {
-        return null;
+
+        return bookRepositoryImpl.Save(data);
     }
 
     @Override
     public List<BookDTO> DeleteByPhone(String phone) {
-        return null;
+
+        return bookRepositoryImpl.Delete(phone);
     }
 }

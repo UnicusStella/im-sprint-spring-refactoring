@@ -21,7 +21,8 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     @Override
     public List<FlightDTO.Info> FindByTime(String departure_times, String arrival_times) {
-        return flightList.stream()
+        return flightList
+                .stream()
                 .filter(item -> item.getDeparture_times().equals(departure_times))
                 .filter(item -> item.getArrival_times().equals(arrival_times))
                 .collect(Collectors.toList());
@@ -30,7 +31,8 @@ public class FlightRepositoryImpl implements FlightRepository {
     @Override
     public List<FlightDTO.Info> FindByRoute(String departure, String destination) {
 
-        return flightList.stream()
+        return flightList
+                .stream()
                 .filter(item -> item.getDeparture().equals(departure))
                 .filter(item -> item.getDestination().equals(destination))
                 .collect(Collectors.toList());
@@ -39,7 +41,8 @@ public class FlightRepositoryImpl implements FlightRepository {
     @Override
     public Optional<FlightDTO.Info> FindById(String id) {
 
-        return flightList.stream()
+        return flightList
+                .stream()
                 .filter(item -> item.getUuid().equals(id))
                 .findAny();
     }
@@ -47,7 +50,8 @@ public class FlightRepositoryImpl implements FlightRepository {
     @Override
     public FlightDTO.Info Update(String id, FlightDTO.Request data) {
 
-        FlightDTO.Info filterData = flightList.stream()
+        FlightDTO.Info filterData = flightList
+                .stream()
                 .filter(item -> item.getUuid().equals(id))
                 .findAny()
                 .get();
