@@ -32,7 +32,7 @@ public class FlightRepositoryImpl implements FlightRepository {
 
         return flightList.stream()
                 .filter(item -> item.getDeparture().equals(departure))
-                .filter(item -> item.getDestination().equals(departure))
+                .filter(item -> item.getDestination().equals(destination))
                 .collect(Collectors.toList());
     }
 
