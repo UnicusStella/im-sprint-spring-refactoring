@@ -1,22 +1,50 @@
 package com.codestates.seb.StatesAirlineServer.Controller;
 
 import com.codestates.seb.StatesAirlineServer.Domain.FlightDTO;
+import com.codestates.seb.StatesAirlineServer.Service.FlightService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class FlightControllerImpl implements FlightController{
-    @Override
-    public List<FlightDTO.Info> FilterFlightList(String departure_times, String arrival_times, String departure, String destination) {
-        return null;
+
+    private final FlightService flightService;
+
+    public FlightControllerImpl(FlightService flightService) {
+        this.flightService = flightService;
     }
 
     @Override
-    public FlightDTO.Info FindById(String id) {
-        return null;
+    @GetMapping(value = "/flight")
+    public List<FlightDTO.Info> FilterFlightList(@RequestParam(required = false) String departure_times,
+                                                 @RequestParam(required = false) String arrival_times,
+                                                 @RequestParam(required = false) String departure,
+                                                 @RequestParam(required = false) String destination) {
+
+        if(departure_times != null && arrival_times != null){
+            return flightService.SreachByTime(departure_times,arrival_times);
+        }
+        else if(departure != null && destination != null){
+            return flightService.SreachByRoute(departure,destination);
+        }
+        else{
+            return flightService.SreachAll();
+        }
     }
 
     @Override
-    public FlightDTO.Info UpdateFlightData(String id, FlightDTO.Request data) {
-        return null;
+    @GetMapping(value = "flight/{id}")
+    public FlightDTO.Info FindById(@PathVariable String id) {
+
+        return flightService.SreachById(id);
+    }
+
+    @Override
+    @PutMapping(value = "flight/{id}")
+    public FlightDTO.Info UpdateFlightData(@PathVariable String id,
+                                           @RequestBody(required = false) FlightDTO.Request data) {
+
+        return flightService.UpdateFlight(id,data);
     }
 }
