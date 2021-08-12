@@ -2,7 +2,7 @@ package com.codestates.seb.StatesAirlineServer.Service;
 
 import com.codestates.seb.StatesAirlineServer.Data.BookData;
 import com.codestates.seb.StatesAirlineServer.Domain.BookDTO;
-import com.codestates.seb.StatesAirlineServer.Repository.BookRepositoryImpl;
+import com.codestates.seb.StatesAirlineServer.Repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,39 +10,39 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private final BookRepositoryImpl bookRepositoryImpl;
+    private final BookRepository bookRepository;
 
-    public BookServiceImpl(BookRepositoryImpl bookRepositoryImpl) {
-        this.bookRepositoryImpl = bookRepositoryImpl;
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     @Override
     public List<BookDTO> SearchAll() {
 
-        return bookRepositoryImpl.FindAll();
+        return bookRepository.FindAll();
     }
 
     @Override
     public List<BookDTO> SearchByFlightUuid(String uuid) {
 
-        return bookRepositoryImpl.FindByUuid(uuid);
+        return bookRepository.FindByUuid(uuid);
     }
 
     @Override
     public List<BookDTO> SearchByPhone(String phone) {
 
-        return bookRepositoryImpl.FindByPhone(phone);
+        return bookRepository.FindByPhone(phone);
     }
 
     @Override
     public BookDTO SaveBook(BookDTO data) {
 
-        return bookRepositoryImpl.Save(data);
+        return bookRepository.Save(data);
     }
 
     @Override
     public List<BookDTO> DeleteByPhone(String phone) {
 
-        return bookRepositoryImpl.Delete(phone);
+        return bookRepository.Delete(phone);
     }
 }

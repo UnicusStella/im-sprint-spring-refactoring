@@ -1,7 +1,7 @@
 package com.codestates.seb.StatesAirlineServer.Service;
 
 import com.codestates.seb.StatesAirlineServer.Domain.FlightDTO;
-import com.codestates.seb.StatesAirlineServer.Repository.FlightRepositoryImpl;
+import com.codestates.seb.StatesAirlineServer.Repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,43 +10,43 @@ import java.util.List;
 @Service
 public class FlightServiceImpl implements FlightService {
 
-    private final FlightRepositoryImpl flightRepositoryImpl;
+    private final FlightRepository flightRepository;
 
     @Autowired
-    public FlightServiceImpl(FlightRepositoryImpl flightRepositoryImpl) {
-        this.flightRepositoryImpl = flightRepositoryImpl;
+    public FlightServiceImpl(FlightRepository flightRepository) {
+        this.flightRepository = flightRepository;
     }
 
     @Override
     public List<FlightDTO.Info> SreachAll() {
 
-        return flightRepositoryImpl.FindAll();
+        return flightRepository.FindAll();
     }
 
     @Override
     public List<FlightDTO.Info> SreachByTime(String departure_times, String arrival_times) {
 
-        return flightRepositoryImpl.FindByTime(departure_times, arrival_times);
+        return flightRepository.FindByTime(departure_times, arrival_times);
     }
 
     @Override
     public List<FlightDTO.Info> SreachByRoute(String departure, String destination) {
 
-        return flightRepositoryImpl.FindByRoute(departure, destination);
+        return flightRepository.FindByRoute(departure, destination);
 
     }
 
     @Override
     public FlightDTO.Info SreachById(String id) {
 
-        return flightRepositoryImpl.FindById(id).get();
+        return flightRepository.FindById(id).get();
 
     }
 
     @Override
     public FlightDTO.Info UpdateFlight(String id, FlightDTO.Request data) {
 
-        return flightRepositoryImpl.Update(id, data);
+        return flightRepository.Update(id, data);
 
     }
     

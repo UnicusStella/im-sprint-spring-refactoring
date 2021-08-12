@@ -1,7 +1,7 @@
 package com.codestates.seb.StatesAirlineServer.Controller;
 
 import com.codestates.seb.StatesAirlineServer.Domain.FlightDTO;
-import com.codestates.seb.StatesAirlineServer.Service.FlightServiceImpl;
+import com.codestates.seb.StatesAirlineServer.Service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 public class FlightControllerImpl implements FlightController{
 
-    private final FlightServiceImpl flightServiceImpl;
+    private final FlightService flightService;
 
     @Autowired
-    public FlightControllerImpl(FlightServiceImpl flightServiceImpl) {
-        this.flightServiceImpl = flightServiceImpl;
+    public FlightControllerImpl(FlightService flightService) {
+        this.flightService = flightService;
     }
 
     @Override
@@ -25,13 +25,13 @@ public class FlightControllerImpl implements FlightController{
                                                  @RequestParam(required = false) String destination) {
 
         if(departure_times != null && arrival_times != null){
-            return flightServiceImpl.SreachByTime(departure_times,arrival_times);
+            return flightService.SreachByTime(departure_times,arrival_times);
         }
         else if(departure != null && destination != null){
-            return flightServiceImpl.SreachByRoute(departure,destination);
+            return flightService.SreachByRoute(departure,destination);
         }
         else{
-            return flightServiceImpl.SreachAll();
+            return flightService.SreachAll();
         }
     }
 
@@ -39,7 +39,7 @@ public class FlightControllerImpl implements FlightController{
     @GetMapping(value = "flight/{id}")
     public FlightDTO.Info FindById(@PathVariable String id) {
 
-        return flightServiceImpl.SreachById(id);
+        return flightService.SreachById(id);
     }
 
     @Override
@@ -47,6 +47,6 @@ public class FlightControllerImpl implements FlightController{
     public FlightDTO.Info UpdateFlightData(@PathVariable String id,
                                            @RequestBody(required = false) FlightDTO.Request data) {
 
-        return flightServiceImpl.UpdateFlight(id,data);
+        return flightService.UpdateFlight(id,data);
     }
 }
