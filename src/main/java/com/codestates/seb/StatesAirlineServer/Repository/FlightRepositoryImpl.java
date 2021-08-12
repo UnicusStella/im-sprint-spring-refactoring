@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Repository
 public class FlightRepositoryImpl implements FlightRepository {
 
-    List<FlightDTO.Info> flightList = FlightData.getInstacne().getFlightList();
+    private final List<FlightDTO.Info> flightList = FlightData.getInstacne().getFlightList();
 
     @Override
     public List<FlightDTO.Info> FindAll() {

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Repository
 public class BookRepositoryImpl implements BookRepository{
 
-    private List<BookDTO> bookList = BookData.getInstance().getBookList();
+    private final List<BookDTO> bookList = BookData.getInstance().getBookList();
 
     @Override
     public List<BookDTO> FindAll() {
