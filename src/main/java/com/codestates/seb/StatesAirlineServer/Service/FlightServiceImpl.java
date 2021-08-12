@@ -2,7 +2,6 @@ package com.codestates.seb.StatesAirlineServer.Service;
 
 import com.codestates.seb.StatesAirlineServer.Domain.FlightDTO;
 import com.codestates.seb.StatesAirlineServer.Repository.FlightRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,6 @@ public class FlightServiceImpl implements FlightService {
 
     private final FlightRepository flightRepository;
 
-    @Autowired
     public FlightServiceImpl(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }

@@ -1,6 +1,5 @@
 package com.codestates.seb.StatesAirlineServer.Service;
 
-import com.codestates.seb.StatesAirlineServer.Data.BookData;
 import com.codestates.seb.StatesAirlineServer.Domain.BookDTO;
 import com.codestates.seb.StatesAirlineServer.Repository.BookRepository;
 import org.springframework.stereotype.Service;
