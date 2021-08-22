@@ -1,6 +1,7 @@
 package com.codestates.seb.StatesAirlineServer.Controller;
 
 import com.codestates.seb.StatesAirlineServer.Domain.BookDTO;
+import com.codestates.seb.StatesAirlineServer.Service.BookService;
 import com.codestates.seb.StatesAirlineServer.Service.BookServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,11 +10,10 @@ import java.util.List;
 @RestController
 public class BookControllerImpl implements BookController {
 
-    private final BookServiceImpl bookServiceImpl;
+    private final BookService bookService;
 
-    public BookControllerImpl(BookServiceImpl bookServiceImpl) {
-
-        this.bookServiceImpl = bookServiceImpl;
+    public BookControllerImpl(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class BookControllerImpl implements BookController {
                                   @RequestParam(required = false) String phone) {
 
         if (flight_uuid != null) {
-            return bookServiceImpl.SearchByFlightUuid(flight_uuid);
+            return bookService.SearchByFlightUuid(flight_uuid);
         } else if (phone != null) {
-            return bookServiceImpl.SearchByPhone(phone);
+            return bookService.SearchByPhone(phone);
         } else {
-            return bookServiceImpl.SearchAll();
+            return bookService.SearchAll();
         }
     }
 
@@ -34,13 +34,13 @@ public class BookControllerImpl implements BookController {
     @PostMapping(value = "/book")
     public BookDTO CreateBook(@RequestBody BookDTO createData) {
 
-        return bookServiceImpl.SaveBook(createData);
+        return bookService.SaveBook(createData);
     }
 
     @Override
     @DeleteMapping(value = "/book")
     public List<BookDTO> DeleteByPhone(@RequestParam String phone) {
 
-        return bookServiceImpl.DeleteByPhone(phone);
+        return bookService.DeleteByPhone(phone);
     }
 }
